@@ -13,12 +13,12 @@ function [t,vout] = heun(Vin,R,L,t0,iL0,tf,h)
     
     for i=1:N-1                     %loop for N-1 steps            
         t(i+1) = t0+(h*i);
-        k1 = h*feval(func,t(i),iL(i));  %evaluate func (at t and iL)
-        k2 = h*feval(func,t(i)+h, iL(i)+k1);
-        %next value of inducter current calculated from average gradient
-        %and previous value of iL:
-        iL(i+1) = iL(i)+(k1+k2)/2;
-        %evaluate output voltage from iL and Vin
-        vout(i+1) = feval(Vin,t(i+1))-(R*iL(i+1)); 
+        k1 = h*feval(func,t(i),iL(i));  % gradient at the left end of interval
+        k2 = h*feval(func,t(i)+h, iL(i)+k1); % gradient at the right end of the interval
+        
+        iL(i+1) = iL(i)+(k1+k2)/2; % next value of inducter current calculated from average gradient
+        %and previous value of iL
+       
+        vout(i+1) = feval(Vin,t(i+1))-(R*iL(i+1));  % evaluate output voltage from iL and Vin
     end
 end
