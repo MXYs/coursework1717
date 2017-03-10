@@ -14,7 +14,7 @@ hold on;
 plot(t,input(t),'r'); % plot input on the same plot 
 title('vin = step'); % name the plot
 % all the code pieces bellow follow the same pattern to plot the solution
-% different tf are used to give clear overview of the output function
+% different values of tf are used to give clear overview of the output function
 
 % ------------------------- exponenetial signal input --------------------------
 vamp=4;
